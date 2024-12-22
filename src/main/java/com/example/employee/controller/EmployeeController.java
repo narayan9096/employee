@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
@@ -35,7 +37,7 @@ public class EmployeeController {
         return new ResponseEntity<>(retrivedEmployee, HttpStatus.OK);
     }
 
-    @GetMapping ("/byPosition")
+    @GetMapping ("/byPosition/{position}")
     public ResponseEntity<List<Employee>> getEmployeeByPostion( @PathVariable String position){
         List<Employee> retrivedEmployee = employeeService.getEmployeeByPostion(position);
         return new ResponseEntity<>(retrivedEmployee, HttpStatus.OK);

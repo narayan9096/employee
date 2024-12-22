@@ -6,6 +6,8 @@ import com.example.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeService {
 
@@ -37,7 +39,7 @@ public class EmployeeService {
     }
 
     public List<Employee> getEmployeeByPostion(String position) {
-        List<Employee> employeeList = employeeRepository.findByPosition(position);
+        List<Employee> employeeList = employeeRepository.findEmployeesByPosition(position);
         return employeeList;
     }
 
