@@ -36,6 +36,11 @@ public class EmployeeService {
                return existingEmployee;
     }
 
+    public List<Employee> getEmployeeByPostion(String position) {
+        List<Employee> employeeList = employeeRepository.findByPosition(position);
+        return employeeList;
+    }
+
     public void deleteEmployee(long id) {
         employeeRepository.deleteById(id);
     }
