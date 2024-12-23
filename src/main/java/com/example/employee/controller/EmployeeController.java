@@ -4,6 +4,7 @@ import com.example.employee.dto.EmployeeDTO;
 import com.example.employee.entity.Employee;
 import com.example.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,9 +43,10 @@ public class EmployeeController {
         return new ResponseEntity<>("deleted succesfully", HttpStatus.BAD_REQUEST  );
     }
 
-    @GetMapping ("/byPosition")
-    public ResponseEntity<List<Employee>> getEmployeeByPostion( @PathVariable String position){
-        List<Employee> retrivedEmployee = employeeService.getEmployeeByPostion(position);
+    @GetMapping ("/filter")
+    public ResponseEntity<Page<Employee>> getEmployees( @RequestHeader String position, @RequestHeader int page, @RequestHeader int size,
+                                                        @RequestHeader int minSalary, @RequestHeader int maxSalary){
+        Page<Employee> retrivedEmployee = employeeService.getEmployees(position, minSalary, maxSalary, page, size);
         return new ResponseEntity<>(retrivedEmployee, HttpStatus.OK);
     }
 

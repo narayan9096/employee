@@ -21,6 +21,15 @@ public class Employee {
     private String name;
     private String email;
     private String position;
+    private int salary;
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
 
     public Long getId() {
         return id;

@@ -4,6 +4,9 @@ import com.example.employee.dto.EmployeeDTO;
 import com.example.employee.entity.Employee;
 import com.example.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,8 +45,9 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    public List<Employee> getEmployeeByPostion(String position) {
-        List<Employee> employeeList = employeeRepository.findByPosition(position);
-        return employeeList;
+    public Page<Employee> getEmployees(String position, int minSalary, int maxSalary, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return employeeRepository.findEmployees(position, minSalary, maxSalary, pageable);
     }
+
 }
