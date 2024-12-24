@@ -37,6 +37,13 @@ public class EmployeeController {
         Employee retrivedEmployee = employeeService.getEmployee(id);
         return new ResponseEntity<>(retrivedEmployee, HttpStatus.OK);
     }
+
+    @GetMapping ("/byPosition/{position}")
+    public ResponseEntity<List<Employee>> getEmployeeByPostion( @PathVariable String position){
+        List<Employee> retrivedEmployee = employeeService.getEmployeeByPostion(position);
+        return new ResponseEntity<>(retrivedEmployee, HttpStatus.OK);
+    }
+    
     @DeleteMapping ("/{id}")
     public ResponseEntity<String> deleteEmployee( @PathVariable long id ){
         employeeService.deleteEmployee(id);
